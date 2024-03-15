@@ -9,27 +9,47 @@ typedef enum
     Haute
 }Priorite;
 
-typedef enum
-{
-    Non_terminee = 0,
-    Terminee
-}Status;
-
 typedef struct
 {
     char titre[100];
     Priorite priorite;
     char date[11];
-    Status status;
+    int status;
 }Tache;
 
 Tache taches[50];
+int tache_Num = 0;
 
+void ajouterTache()
+{
+    if(tache_Num >= 50)
+    {
+        printf("Can't add any more tasks, List is full!\n");
+        return;
+    }
+
+    printf("Enter Task title: ");
+    scanf("%s", taches[tache_Num].titre);
+
+    printf("Enter the priority (1. Low, 2. Medium, 3. High): ");
+    scanf("%d", (int*)&taches[tache_Num].priorite);
+
+    printf("Enter Due date: ");
+    scanf("%s", taches[tache_Num].date);
+
+    taches[tache_Num].status = 0;
+
+    tache_Num++;
+
+    printf("Task added successfuly");
+}
 
 int main(int argc, char const *argv[])
 {
-    Tache t1 = {"finish the mini project", 3, "21/03/2023"};
-    printf("Description: %s Priority: %d, Date: %s Statue: %d", t1.titre, t1.priorite, t1.date, t1.status);
+    ajouterTache();
+
+    printf("%s | %d | %s | %d", taches[0].titre, taches[0].priorite, taches[0].date, taches[0].status);
+    
     
     return 0;
 }
