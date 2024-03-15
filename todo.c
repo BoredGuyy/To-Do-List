@@ -41,14 +41,23 @@ void ajouterTache()
 
     tache_Num++;
 
-    printf("Task added successfuly");
+    printf("Task added successfuly!\n");
+}
+
+void afficherTaches()
+{
+    printf("Tasks:\n");
+    for (int i = 0; i < tache_Num; i++)
+    {
+        printf("%d - Task Description: %s - Task Priority: %d - Task Due Date: %s - Task Status: %d\n",tache_Num-1 , taches[i].titre, taches[i].priorite, taches[i].date, taches[i].status);
+    }
 }
 
 int main(int argc, char const *argv[])
 {
     ajouterTache();
 
-    printf("%s | %d | %s | %d", taches[0].titre, taches[0].priorite, taches[0].date, taches[0].status);
+    afficherTaches();
     
     
     return 0;
