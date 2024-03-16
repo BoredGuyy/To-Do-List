@@ -53,12 +53,45 @@ void afficherTaches()
     }
 }
 
+void modifierTache()
+{
+    afficherTaches();
+
+    if (tache_Num == 0)
+    {
+        printf("No tasks to modify yet!\n");
+        return;
+    }
+    
+    int choice;
+    printf("Task number to modify: ");
+    scanf("%d", &choice);
+
+    if (choice < 0 || choice >= tache_Num)
+    {
+        printf("Error! Thre is no task with the number you entered\n");
+        return;
+    }
+    
+    printf("Enter New Task title: ");
+    scanf("%s", taches[choice].titre);
+
+    printf("Enter New priority (1. Low, 2. Medium, 3. High): ");
+    scanf("%d", (int*)&taches[choice].priorite);
+
+    printf("Enter New Due date: ");
+    scanf("%s", taches[choice].date);
+
+    printf("Task modified successfuly!\n");
+}
+
 int main(int argc, char const *argv[])
 {
     ajouterTache();
 
+    modifierTache();
+    
     afficherTaches();
-    
-    
+
     return 0;
 }
