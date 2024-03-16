@@ -49,7 +49,7 @@ void afficherTaches()
     printf("Tasks:\n");
     for (int i = 0; i < tache_Num; i++)
     {
-        printf("%d - Task Description: %s - Task Priority: %d - Task Due Date: %s - Task Status: %d\n",tache_Num-1 , taches[i].titre, taches[i].priorite, taches[i].date, taches[i].status);
+        printf("%d - Task Description: %s - Task Priority: %d - Task Due Date: %s - Task Status: %d\n",i , taches[i].titre, taches[i].priorite, taches[i].date, taches[i].status);
     }
 }
 
@@ -85,11 +85,41 @@ void modifierTache()
     printf("Task modified successfuly!\n");
 }
 
+void supprimerTache()
+{
+    if(tache_Num < 0)
+    {
+        printf("There are no tasks to delete!\n");
+        return;
+    }
+
+    afficherTaches();
+
+    int choice;
+    printf("Enter task number to be deleted: ");
+    scanf("%d", &choice);
+
+    if (choice < 0 || choice >= tache_Num)
+    {
+        printf("Error! there is no task with the number you entered!\n");
+        return;
+    }
+
+    for (int i = choice; i < tache_Num -1; i++)
+    {
+        taches[i] = taches[i + 1];
+    }
+    tache_Num--;
+
+    printf("Task deleted successfuly!\n");    
+}
+
 int main(int argc, char const *argv[])
 {
     ajouterTache();
+    ajouterTache();
 
-    modifierTache();
+    supprimerTache();
     
     afficherTaches();
 
