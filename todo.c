@@ -49,7 +49,7 @@ void afficherTaches()
     printf("Tasks:\n");
     for (int i = 0; i < tache_Num; i++)
     {
-        printf("%d - Task Description: %s - Task Priority: %d - Task Due Date: %s - Task Status: %d\n",i , taches[i].titre, taches[i].priorite, taches[i].date, taches[i].status);
+        printf("%d - Task Description: %s - Task Priority: %d - Task Due Date: %s - Task Status: %d\n",i , taches[i].titre, (int)taches[i].priorite, taches[i].date, taches[i].status);
     }
 }
 
@@ -87,7 +87,7 @@ void modifierTache()
 
 void supprimerTache()
 {
-    if(tache_Num < 0)
+    if(tache_Num <= 0)
     {
         printf("There are no tasks to delete!\n");
         return;
@@ -105,7 +105,7 @@ void supprimerTache()
         return;
     }
 
-    for (int i = choice; i < tache_Num -1; i++)
+    for (int i = choice; i < tache_Num - 1; i++)
     {
         taches[i] = taches[i + 1];
     }
@@ -114,14 +114,55 @@ void supprimerTache()
     printf("Task deleted successfuly!\n");    
 }
 
+void filtrage()
+{
+    if (tache_Num == 0)
+    {
+        printf("No tasks to filter yet!\n");
+        return;
+    }
+
+    printf("Filtrage option:\n");
+    printf("1- Filter by Priority\n");
+    printf("2- Filter by Due Date\n");
+    
+    int choice;
+    scanf("%d", &choice);
+
+    if(choice == 1)
+    {
+        int priorite = 3;
+        do
+        {
+            for (int i = 0; i < tache_Num; i++)
+            {
+                if(taches[i].priorite == priorite)
+                    printf("%d - Task Description: %s - Task Priority: %d - Task Due Date: %s - Task Status: %d\n",i , taches[i].titre, (int)taches[i].priorite, taches[i].date, taches[i].status);
+            }
+            priorite--;
+        } while (priorite > 0);
+                
+    }
+    else if(choice == 2)
+    {
+        for(int i = 0; i < tache_Num; i++)
+        {
+            printf("Will be done soon!\n");
+            return;
+        }
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     ajouterTache();
     ajouterTache();
+    ajouterTache();
+    ajouterTache();
+    ajouterTache();
 
-    supprimerTache();
+    filtrage();
     
-    afficherTaches();
 
     return 0;
 }
