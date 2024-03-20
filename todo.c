@@ -2,7 +2,6 @@
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 typedef enum
 {
@@ -52,6 +51,13 @@ void ajouterTache()
 void afficherTaches()
 {
     system("clear");
+
+    if (tache_Num == 0)
+    {
+        printf("No tasks to Display yet!\n");
+        return;
+    }
+
     printf("\n-------------------- Tasks: ----------------------------------\n\n");
     for (int i = 0; i < tache_Num; i++)
     {
@@ -63,13 +69,13 @@ void afficherTaches()
 void modifierTache()
 {
     system("clear");
-    afficherTaches();
-
     if (tache_Num == 0)
     {
         printf("No tasks to modify yet!\n");
         return;
     }
+
+    afficherTaches();
     
     int choice;
     printf("Task number to modify: ");
@@ -77,7 +83,7 @@ void modifierTache()
 
     if (choice < 0 || choice >= tache_Num)
     {
-        printf("Error! Thre is no task with the number you entered\n");
+        printf("Error! There is no task with the number you entered\n");
         return;
     }
     
@@ -223,7 +229,7 @@ void start()
             case 4: filtrage(); break;
             case 5: afficherTaches(); break;
             case 6: marqueTache(); break;
-            case 7: printf("Good Bye!\n"); break;
+            case 7: printf("\nGood Bye!\n"); break;
             default: printf("Choix invalide.\n");
         }
     } while (choice != 7);
